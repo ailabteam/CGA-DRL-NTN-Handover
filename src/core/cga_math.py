@@ -27,7 +27,6 @@ class CGAEngine:
 
     def get_distance_sq(self, P1, P2):
         inner_prod = P1 | P2 
-        # FIX: Access scalar part directly
         val = inner_prod[0]
         dist_sq = -2.0 * val
         return abs(dist_sq) 
@@ -42,7 +41,6 @@ class CGAEngine:
         u_vec_ga = user_point(1) 
         s_vec_ga = sat_point(1)
         
-        # FIX: Access coefficients using basis blades as keys
         u_arr = np.array([u_vec_ga[e1], u_vec_ga[e2], u_vec_ga[e3]])
         s_arr = np.array([s_vec_ga[e1], s_vec_ga[e2], s_vec_ga[e3]])
         
@@ -65,13 +63,11 @@ class CGAEngine:
     def to_features(self, user_point, sat_point):
         d_sq = self.get_distance_sq(user_point, sat_point)
         dist = np.sqrt(d_sq)
-        
         feat_dist = dist / 2000.0
         
         u_vec_ga = user_point(1) 
         s_vec_ga = sat_point(1)
         
-        # FIX: Access coefficients using basis blades as keys
         u_arr = np.array([u_vec_ga[e1], u_vec_ga[e2], u_vec_ga[e3]])
         s_arr = np.array([s_vec_ga[e1], s_vec_ga[e2], s_vec_ga[e3]])
         
@@ -82,3 +78,28 @@ class CGAEngine:
             cos_gamma = np.dot(u_arr, s_arr) / norm_prod
         
         return np.array([feat_dist, cos_gamma], dtype=np.float32)
+
+    def get_radial_velocity(self, user_point, sat_point, sat_velocity_vector):
+        """
+        Tính vận tốc hướng tâm (Radial Velocity) dùng CGA.
+        V_rad = (v . r) / |r|
+        """
+        # 1. Lấy vector hướng từ User đến Sat (r = S - U)
+        u_vec = user_point(1)
+        s_vec = sat_point(1)
+        r_vec = s_vec - u_vec 
+        
+        # 2. Tính độ dài vector r
+        # r . r = |r|^2
+        r_sq = (r_vec | r_vec)[0]
+        r_norm = math.sqrt(float(r_sq))
+        
+        if r_norm == 0: return 0.0
+
+        # 3. Tính tích vô hướng giữa Vận tốc vệ tinh và Vector hướng
+        # sat_velocity_vector là Vector GA (Grade 1)
+        dot_prod = float((sat_velocity_vector | r_vec)[0])
+        
+        # 4. Radial velocity
+        v_rad = dot_prod / r_norm
+        return v_rad
