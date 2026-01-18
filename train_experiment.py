@@ -10,7 +10,7 @@ from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.monitor import Monitor
 from src.envs.ntn_env import SatelliteHandoverEnv
 
-# Custom Wrapper để cộng dồn metrics cho Monitor ghi log
+# FIX: Class wrapper cập nhật logic info
 class MetricsWrapper(gym.Wrapper):
     def __init__(self, env):
         super().__init__(env)
@@ -26,14 +26,18 @@ class MetricsWrapper(gym.Wrapper):
         
     def step(self, action):
         obs, reward, done, truncated, info = self.env.step(action)
+        
         self.ep_ho += info.get('is_ho', 0)
         self.ep_tp += info.get('throughput', 0)
         self.ep_outage += info.get('outage', 0)
         
         if done:
-            info['episode']['ho_count'] = self.ep_ho
-            info['episode']['avg_throughput'] = self.ep_tp / self.env.step_count
-            info['episode']['outage_steps'] = self.ep_outage
+            # Chỉ cần gán vào info root, Monitor sẽ tự pick up nhờ info_keywords
+            info['ho_count'] = self.ep_ho
+            # Tránh chia cho 0
+            steps = self.env.step_count if self.env.step_count > 0 else 1
+            info['avg_throughput'] = self.ep_tp / steps
+            info['outage_steps'] = self.ep_outage
             
         return obs, reward, done, truncated, info
 
@@ -46,8 +50,9 @@ def set_seed(seed):
 def make_env(feature_type, scenario, seed):
     def _init():
         env = SatelliteHandoverEnv(k_nearest=5, feature_type=feature_type, scenario=scenario)
-        env = MetricsWrapper(env) # Wrap it
-        # Monitor sẽ tự động log các keys trong info['episode']
+        # Wrap Metrics trước
+        env = MetricsWrapper(env) 
+        # Wrap Monitor sau cùng, khai báo keywords cần log
         env = Monitor(env, info_keywords=("ho_count", "avg_throughput", "outage_steps"))
         env.reset(seed=seed)
         return env
@@ -70,7 +75,6 @@ def main():
     
     print(f"--- START: {run_name} | Scenario: {args.scenario} ---")
     
-    # Số envs song song: 4 (để tận dụng CPU)
     n_envs = 4
     env = make_vec_env(make_env(args.feature, args.scenario, args.seed), n_envs=n_envs)
 
