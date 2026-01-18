@@ -1,10 +1,8 @@
-# src/core/cga_math.py
 import numpy as np
 import math
 from clifford.g3c import *
 from clifford.tools.g3c import *
 
-# Hằng số vật lý (Đơn vị: km)
 R_EARTH = 6371.0 
 
 class CGAEngine:
@@ -17,11 +15,9 @@ class CGAEngine:
         r = R_EARTH + alt
         phi = np.radians(lat)
         theta = np.radians(lon)
-
         x = r * np.cos(phi) * np.cos(theta)
         y = r * np.cos(phi) * np.sin(theta)
         z = r * np.sin(phi)
-        
         x_vec = x*e1 + y*e2 + z*e3
         return up(x_vec)
 
@@ -40,22 +36,15 @@ class CGAEngine:
     def check_visibility_fast(self, user_point, sat_point, min_elevation_deg=10.0):
         u_vec_ga = user_point(1) 
         s_vec_ga = sat_point(1)
-        
         u_arr = np.array([u_vec_ga[e1], u_vec_ga[e2], u_vec_ga[e3]])
         s_arr = np.array([s_vec_ga[e1], s_vec_ga[e2], s_vec_ga[e3]])
-        
         r_u = np.linalg.norm(u_arr)
         r_s = np.linalg.norm(s_arr)
-        
         if r_u == 0 or r_s == 0: return False
-
         cos_gamma = np.dot(u_arr, s_arr) / (r_u * r_s)
-        
         gamma_rad = np.arccos(np.clip(cos_gamma, -1.0, 1.0))
         horizon_gamma = np.arccos(R_EARTH / r_s)
-        
         min_el_rad = np.radians(min_elevation_deg)
-        
         if gamma_rad < (horizon_gamma - min_el_rad/4.0): 
              return True
         return False
@@ -67,39 +56,21 @@ class CGAEngine:
         
         u_vec_ga = user_point(1) 
         s_vec_ga = sat_point(1)
-        
         u_arr = np.array([u_vec_ga[e1], u_vec_ga[e2], u_vec_ga[e3]])
         s_arr = np.array([s_vec_ga[e1], s_vec_ga[e2], s_vec_ga[e3]])
-        
         norm_prod = (np.linalg.norm(u_arr) * np.linalg.norm(s_arr))
-        if norm_prod == 0:
-            cos_gamma = 0.0
-        else:
-            cos_gamma = np.dot(u_arr, s_arr) / norm_prod
+        if norm_prod == 0: cos_gamma = 0.0
+        else: cos_gamma = np.dot(u_arr, s_arr) / norm_prod
         
         return np.array([feat_dist, cos_gamma], dtype=np.float32)
 
     def get_radial_velocity(self, user_point, sat_point, sat_velocity_vector):
-        """
-        Tính vận tốc hướng tâm (Radial Velocity) dùng CGA.
-        V_rad = (v . r) / |r|
-        """
-        # 1. Lấy vector hướng từ User đến Sat (r = S - U)
         u_vec = user_point(1)
         s_vec = sat_point(1)
         r_vec = s_vec - u_vec 
-        
-        # 2. Tính độ dài vector r
-        # r . r = |r|^2
         r_sq = (r_vec | r_vec)[0]
         r_norm = math.sqrt(float(r_sq))
-        
         if r_norm == 0: return 0.0
-
-        # 3. Tính tích vô hướng giữa Vận tốc vệ tinh và Vector hướng
-        # sat_velocity_vector là Vector GA (Grade 1)
         dot_prod = float((sat_velocity_vector | r_vec)[0])
-        
-        # 4. Radial velocity
         v_rad = dot_prod / r_norm
         return v_rad
