@@ -1,0 +1,69 @@
+==========================================
+STARTING BATCH EXPERIMENT
+==========================================
+Running CGA-PPO Seed 101...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_cga_seed101 ---
+Device: cuda:0 | Feature: cga | Seed: 101
+--- FINISHED: PPO_cga_seed101 in 2092.7s ---
+Running XYZ-PPO (Baseline) Seed 101...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_xyz_seed101 ---
+Device: cuda:0 | Feature: xyz | Seed: 101
+--- FINISHED: PPO_xyz_seed101 in 2116.6s ---
+------------------------------------------
+Running CGA-PPO Seed 102...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_cga_seed102 ---
+Device: cuda:0 | Feature: cga | Seed: 102
+--- FINISHED: PPO_cga_seed102 in 2072.5s ---
+Running XYZ-PPO (Baseline) Seed 102...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_xyz_seed102 ---
+Device: cuda:0 | Feature: xyz | Seed: 102
+--- FINISHED: PPO_xyz_seed102 in 2130.3s ---
+------------------------------------------
+Running CGA-PPO Seed 103...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_cga_seed103 ---
+Device: cuda:0 | Feature: cga | Seed: 103
+--- FINISHED: PPO_cga_seed103 in 2139.5s ---
+Running XYZ-PPO (Baseline) Seed 103...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_xyz_seed103 ---
+Device: cuda:0 | Feature: xyz | Seed: 103
+--- FINISHED: PPO_xyz_seed103 in 2115.9s ---
+------------------------------------------
+Running CGA-PPO Seed 201...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_cga_seed201 ---
+Device: cuda:0 | Feature: cga | Seed: 201
+--- FINISHED: PPO_cga_seed201 in 2155.5s ---
+Running XYZ-PPO (Baseline) Seed 201...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_xyz_seed201 ---
+Device: cuda:0 | Feature: xyz | Seed: 201
+--- FINISHED: PPO_xyz_seed201 in 2090.0s ---
+------------------------------------------
+Running CGA-PPO Seed 202...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_cga_seed202 ---
+Device: cuda:0 | Feature: cga | Seed: 202
+--- FINISHED: PPO_cga_seed202 in 2190.1s ---
+Running XYZ-PPO (Baseline) Seed 202...
+/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+--- START EXPERIMENT: PPO_xyz_seed202 ---
+Device: cuda:0 | Feature: xyz | Seed: 202
+--- FINISHED: PPO_xyz_seed202 in 2096.6s ---
+------------------------------------------
+BATCH EXPERIMENT COMPLETED.
