@@ -78,7 +78,7 @@ def main():
     n_envs = 4
     env = make_vec_env(make_env(args.feature, args.scenario, args.seed), n_envs=n_envs)
 
-    model = PPO("MlpPolicy", env, verbose=0, tensorboard_log=log_dir, device=f"cuda:{args.gpu}", seed=args.seed)
+    model = PPO("MlpPolicy", env, verbose=0, tensorboard_log=log_dir, device="cpu", seed=args.seed)
 
     start_time = time.time()
     model.learn(total_timesteps=args.steps, tb_log_name=f"seed_{args.seed}")
