@@ -5,5 +5,49 @@ STARTING FINAL BATCH EXPERIMENT (AI + HEURISTIC)
 ### RUNNING SCENARIO: random ###
 ##########################################
 >> [random] CGA-PPO | Seed: 101
-/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+--- START: PPO_cga_seed101 | Scenario: random ---
+Traceback (most recent call last):
+  File "/home/daipv11/CGA-DRL-NTN-Handover/train_experiment.py", line 92, in <module>
+    main()
+  File "/home/daipv11/CGA-DRL-NTN-Handover/train_experiment.py", line 81, in main
+    model = PPO("MlpPolicy", env, verbose=0, tensorboard_log=log_dir, device=f"cuda:{args.gpu}", seed=args.seed)
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/ppo/ppo.py", line 171, in __init__
+    self._setup_model()
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/ppo/ppo.py", line 174, in _setup_model
+    super()._setup_model()
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 135, in _setup_model
+    self.policy = self.policy_class(  # type: ignore[assignment]
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/policies.py", line 535, in __init__
+    self._build(lr_schedule)
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/policies.py", line 634, in _build
+    self.optimizer = self.optimizer_class(self.parameters(), lr=lr_schedule(1), **self.optimizer_kwargs)  # type: ignore[call-arg]
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/optim/adam.py", line 78, in __init__
+    super().__init__(params, defaults)
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/optim/optimizer.py", line 371, in __init__
+    self.add_param_group(cast(dict, param_group))
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/_compile.py", line 27, in inner
+    import torch._dynamo
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/_dynamo/__init__.py", line 3, in <module>
+    from . import convert_frame, eval_frame, resume_execution
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/_dynamo/convert_frame.py", line 53, in <module>
+    from . import config, exc, trace_rules
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/_dynamo/trace_rules.py", line 46, in <module>
+    from .variables import (
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/_dynamo/variables/__init__.py", line 2, in <module>
+    from .builtin import BuiltinVariable
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/_dynamo/variables/builtin.py", line 47, in <module>
+    from .ctx_manager import EventVariable, StreamVariable
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/_dynamo/variables/ctx_manager.py", line 22, in <module>
+    from .functions import (
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/_dynamo/variables/functions.py", line 31, in <module>
+    from torch.distributed._composable.fsdp import _fsdp_param_group
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/distributed/_composable/__init__.py", line 3, in <module>
+    from .fully_shard import fully_shard
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/distributed/_composable/fully_shard.py", line 10, in <module>
+    from torch.distributed.fsdp._common_utils import _FSDPState
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/distributed/fsdp/__init__.py", line 1, in <module>
+    from ._flat_param import FlatParameter as FlatParameter
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/distributed/fsdp/_flat_param.py", line 47, in <module>
+    from ._fsdp_extensions import (
+  File "/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/torch/distri/home/daipv11/.conda/envs/cga_drl/lib/python3.10/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
   warnings.warn(
